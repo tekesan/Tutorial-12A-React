@@ -1,17 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const green = '#39D1B4';
+const yellow = '#FFD712';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+class Toggle extends React.Component {
+    //give constructor here
+    constructor(props) {
+        super(props);
+        this.state = { color: green };
+        this.changeColor =
+            this.changeColor.bind(this);
+    }
+
+//give changeColor here
+    changeColor() {
+        if (this.state.color === green) {
+            this.setState({color : yellow});
+        } else {
+            this.setState({color : green});
+        }
+    }
+
+    render() {
+        return (
+            <div style={{background: this.state.color}}>
+                <h1>
+                    Change my color
+                </h1>
+                <button onClick={this.changeColor}>
+                    Change color
+                </button>
+
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(<Toggle/>, document.getElementById('root'));
